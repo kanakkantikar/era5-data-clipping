@@ -1,6 +1,6 @@
 """
-Watershed based ERA5 Data Clipping
-Date: 05/22/2022
+Topic: Watershed based ERA5 Data Clipping
+Date of last editing: 07/20/2022
 """
 
 import geopandas
@@ -63,8 +63,8 @@ for file in nc_file_list:
 
 full_masked_nc = xarray.concat(full_processed_nc_list, dim='time')
 
-mean_nc = full_masked_nc.mean(dim=['latitude', 'longitude'])
-mean_nc_c = mean_nc - 273.0
+mean_nc = full_masked_nc.mean(dim=['latitude', 'longitude'])    # For "mean" here (it can be "sum" for other variables)
+mean_nc_c = mean_nc - 273.0                                     # Fahrenheit to Celsius conversion
 
 mean_nc_c.to_netcdf('t2m_avg.nc')
 
